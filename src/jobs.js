@@ -24,8 +24,8 @@ Job.prototype.addLike = function(){
 function start(token){
   console.log('Starting jobs for bot. Autoliking', HASHTAGS)
   ig.use({ access_token: token });
-  //schedule.scheduleJob(SCHEDULE_TIME, jobWork);
   jobWork();
+  schedule.scheduleJob(SCHEDULE_TIME, jobWork);
 }
 
 function jobWork(){
@@ -36,7 +36,6 @@ function jobWork(){
   HASHTAGS.forEach(function(tag){
     console.log('Getting tag', tag)
     ig.tag_media_recent(tag, function(err, medias, pagination, remaining, limit) {
-      console.log(err, medias, pagination, remaining, limit);
       medias.forEach((media) => {
         addLike(media.id)
         job.likes++
