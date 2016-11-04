@@ -1,19 +1,24 @@
 # Instagram bot
 
-Ready to work in a couple of minutes!!
+Ready to work in a couple of minutes!! Auto-like photos by hashtag.
 
 This bot includes:
  - The callback endpoint for Instagram OAUTH
  - A small "in memory" resume of likes
+ - A policy page for Instagram Application validation
  - Docker configuration
 
+
 ## Prerequisites 
+
+`Unless you have a way of obtaining access tokens`
 
 This is the part that will take more time to configure, because the [instagram developer documentation](https://www.instagram.com/developer/authentication/) says that you will need to register a new Instagram application, but it's easy!! Just go [here](https://www.instagram.com/developer/clients/manage/)
 
   If you want to develop in `localhost` mode, create an application and set `http://localhost:3000/handleauth` as your `redirect_uri` in the instagram configuration page. For more information check [internet](http://stackoverflow.com/questions/10456174/oauth-how-to-test-with-local-urls)
 
 Once you had done it, you will have your CLIENT_ID and CLIENT_SECRET and you are ready to go.
+
 
 ## Configuration
 
@@ -31,8 +36,10 @@ ENV PORT 3000
 ENV CLIENT_ID ''
 ENV CLIENT_SECRET ''
 ENV REDIRECT_URI ''
+ENV ACCESS_TOKEN ''
 ```
 
+Alternativelly you could only use an existing `ACCESS_TOKEN` (they are temporal) that you could have obtained elsewhere.
 
 ## Pages
 
@@ -41,6 +48,8 @@ the app will redirect to `http://localhost:3000/handleauth`
 
 Once the authentication is done, you can visit `http://localhost:3000/status`
 to see the status of the application
+
+If you have launched the bot with an `ACCESS_TOKEN` the job will start inmediately.
 
 ## Launch
 

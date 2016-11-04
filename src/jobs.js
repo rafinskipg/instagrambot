@@ -53,13 +53,14 @@ function addLike(id){
 
 function getInfo(){
   return {
-    last_job: jobs.items[jobs.length - 1].startDate,
+    last_job: jobs.items[jobs.items.length - 1].startDate,
     next_job: jobs.nextJobDate,
     likes_made: jobs.items.reduce(function(prev, next) {
       return 0 + next.likes
     }, 0)
   }
 }
+
 module.exports = {
   getInfo : getInfo,
   start: start

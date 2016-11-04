@@ -4,5 +4,6 @@
   "CLIENT_SECRET": "",
   "HASHTAGS": ["instapic", "love", "photo"],
   "AUTOFOLLOW": false,
-  "REDIRECT_URI": "http://yoursite.com/handleauth"
+  "REDIRECT_URI": "http://yoursite.com/handleauth",
+  "ACCESS_TOKEN": ""
 }
