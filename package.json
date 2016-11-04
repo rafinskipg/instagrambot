@@ -1,0 +1,22 @@
+{
+  "name": "instagrambot",
+  "version": "0.0.1",
+  "description": "A instagram bot written in nodejs",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/main"
+  },
+  "keywords": [
+    "instagram",
+    "bot"
+  ],
+  "author": "Rafael Pedrola (@rafinskipg)",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^1.24.0",
+    "express": "^4.14.0",
+    "instagram-node": "^0.5.8",
+    "node-schedule": "^1.2.0"
+  }
+}
