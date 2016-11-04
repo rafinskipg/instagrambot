@@ -23,13 +23,15 @@ console.log('--------------------')
 
 var ACCESS_TOKEN = null; //Global unique access token
  
-api.use({
-  client_id: CLIENT_ID,
-  client_secret: CLIENT_SECRET
-});
+
 
 exports.authorize_user = function(req, res) {
-  res.redirect(api.get_authorization_url(REDIRECT_URI, { scope: ['likes'], state: 'a state' }));
+  api.use({
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET
+  });
+
+  res.redirect(api.get_authorization_url(REDIRECT_URI, { scope: ['likes', 'public_content', 'comments', 'relationships'], state: 'a state' }));
 };
  
 exports.handleauth = function(req, res) {
@@ -38,9 +40,10 @@ exports.handleauth = function(req, res) {
       console.log(err.body);
       res.send("Didn't work");
     } else {
-      console.log('Yay! Access token is ' + result.access_token);
       ACCESS_TOKEN = result.access_token
-      jobs.start();
+      console.log('Yay! Access token is ' + ACCESS_TOKEN);
+      //Start
+      jobs.start(ACCESS_TOKEN);
       res.send('You made it!! We have scheduled a job');
     }
   });
