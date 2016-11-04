@@ -16,14 +16,14 @@ console.log('Starting bot with configuration:')
 console.log('PORT', config.get('PORT'))
 console.log('CLIENT_ID', config.get('CLIENT_ID'))
 console.log('CLIENT_SECRET', config.get('CLIENT_SECRET'))
+console.log('ACCESS_TOKEN', config.get('ACCESS_TOKEN'))
 console.log('REDIRECT_URI', config.get('REDIRECT_URI'))
 console.log('HASHTAGS', config.get('HASHTAGS'))
 console.log('AUTOFOLLOW', config.get('AUTOFOLLOW'))
 console.log('--------------------')
 
-var ACCESS_TOKEN = null; //Global unique access token
- 
-
+//Global unique access token
+var ACCESS_TOKEN = config.get('ACCESS_TOKEN') || null; 
 
 exports.authorize_user = function(req, res) {
   api.use({
@@ -48,7 +48,7 @@ exports.handleauth = function(req, res) {
     }
   });
 };
- 
+
 // This is where you would initially send users to authorize 
 app.get('/authorize_user', exports.authorize_user);
 // This is your redirect URI 
@@ -58,6 +58,17 @@ app.get('/status', function(req, res) {
   res.send(jobs.getInfo()); 
 });
 
+//Change at your will
+app.set('view engine', 'jade')
+
+app.get('/policy', function(req, res) {
+  res.render('policy')
+})
+
 app.listen(PORT, function () {
-  console.log('Server started', PORT)
+  console.log('Server started', PORT);
+  
+  if(ACCESS_TOKEN){
+    jobs.start(ACCESS_TOKEN);
+  }
 })
