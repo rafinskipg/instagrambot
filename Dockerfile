@@ -15,7 +15,7 @@ RUN apt-get update && \
 RUN npm install
 
 
-ENV PORT 3000
+ENV PORT 3030
 ENV CLIENT_ID ''
 ENV CLIENT_SECRET ''
 ENV REDIRECT_URI ''

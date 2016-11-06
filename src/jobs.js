@@ -5,7 +5,7 @@ var schedule = require('node-schedule');
 var ig = require('instagram-node').instagram({});
 
 var HASHTAGS = config.get('HASHTAGS');
-var SCHEDULE_TIME = "* /5 * * * *"; //Each 5 minutes?
+var SCHEDULE_TIME = "* /15 * * * *"; //Each 5 minutes?
 
 var jobs = {
   items : [],
